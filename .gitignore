@@ -8,6 +8,7 @@
 *.so
 *.dylib
 build/
+external/crypto/crypto_wrapper.o
 
 # Test binary, built with `go test -c`
 *.test
