@@ -27,3 +27,6 @@ go.work.sum
 
 # OS related
 .DS_Store
+
+# External files that should change only with dependency upgrade
+external/crypto/openssl
