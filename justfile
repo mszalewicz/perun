@@ -29,11 +29,12 @@ openssl-macos:
     @echo "Compiling: \033[32mDONE\033[0m\n"
 
     @echo "Wrapping project specific parts of OpenSSL..."
-    @cd external/crypto && zig cc -target aarch64-macos \
-                                  -I ./openssl/include \
-                                  -c crypto_wrapper.c \
-                                  -o crypto_wrapper.o \
-                                  || (cat build.log && exit 1)
+    @cd external/crypto && clang -target arm64-apple-macos \
+                                 -O2 \
+                                 -I ./openssl/include \
+                                 -c crypto_wrapper.c \
+                                 -o crypto_wrapper.o \
+                                 || (cat build.log && exit 1)
     @rm -f external/crypto/build.log
     @echo "Wrapping: \033[32mDONE\033[0m\n"
 

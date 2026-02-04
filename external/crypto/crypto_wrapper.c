@@ -16,7 +16,7 @@
     salt_length:      Length of salt
     out_buffer:       Buffer to write the hash into
     out_length:       Size of the output buffer (desired hash length)
-    outcome:          Return value - 1 on success, 0 on failure
+    outcome:          Return value: 1 on success, 0 on failure
 */
 
 int argon2_hash_password(
@@ -34,9 +34,9 @@ int argon2_hash_password(
     OSSL_PARAM params[6], *p = params;
 
     // Hardcoded Argon2 params for this example (Adjust as needed)
-    uint32_t memory_cost = 65536; // 64MiB
+    uint32_t memory_cost = 1048576; // 1GiB
     uint32_t iteration_cost = 3;
-    uint32_t parallel_cost = 4;
+    uint32_t parallel_cost = 8;
 
     // 1. Create Library Context
     lib_ctx = OSSL_LIB_CTX_new();
