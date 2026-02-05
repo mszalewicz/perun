@@ -1,6 +1,8 @@
-package crypto
+package crypto_helpers
 
 import "core:c"
+import "core:crypto"
+import "core:encoding/hex"
 
 foreign import lib {
 	"../../external/crypto/crypto_wrapper.o",
@@ -21,6 +23,15 @@ foreign lib {
 CryptoError :: enum {
 	None,
 	NotHashed
+}
+
+generate_salt :: proc() -> string {
+	salt: [32]byte
+	crypto.rand_bytes(salt[:])
+	salt_string := hex.encode(salt[:])
+	// defer delete(salt_string)
+
+	return string(salt_string)
 }
 
 hash_string :: proc(input: string, salt: string) -> ([32]u8, CryptoError) {
